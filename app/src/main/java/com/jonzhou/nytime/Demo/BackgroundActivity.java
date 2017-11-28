@@ -1,16 +1,11 @@
 package com.jonzhou.nytime.Demo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.ViewStub;
 
-import com.bumptech.glide.Glide;
 import com.jonzhou.nytime.R;
-import com.stx.xhb.xbanner.XBanner;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -19,10 +14,18 @@ import java.util.List;
 public class BackgroundActivity extends AppCompatActivity {
 
 
+    private ViewStub viewStub;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_background);
+        viewStub = (ViewStub) findViewById(R.id.view_stub);
+    }
+
+
+    public void btBgChange(View v) {
+        View iv_vsContent = viewStub.inflate();
     }
 
 

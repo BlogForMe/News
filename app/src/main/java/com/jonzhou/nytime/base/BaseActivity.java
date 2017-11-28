@@ -22,16 +22,17 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
     public final  static String PARAMS_01="PARAMS01";
     public Context mContext;
-    @BindView(R.id.toolbar)
+//    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @BindView(R.id.toolbar_title)
+//    @BindView(R.id.toolbar_title)
     TextView toolBarTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mToolbar = findViewById(R.id.toolbar);
+        toolBarTitle= findViewById(R.id.toolbar_title);
         setContentView(setLayoutId());
         ButterKnife.bind(this);
         mContext = this;
@@ -72,7 +73,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         //显示默认返回键
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //显示主标题
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     /**
