@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 /**
  * Created by jon on 17-10-21.
@@ -46,6 +47,12 @@ public abstract class BaseFragment extends RxFragment {
         }
         initView(rootView);
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Timber.i("onResume() ----------------------------------------");
     }
 
     protected abstract void initView(View rootView);

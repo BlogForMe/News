@@ -8,21 +8,35 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jonzhou.nytime.R;
+import com.jonzhou.nytime.base.BaseFragment;
+
+import timber.log.Timber;
 
 /**
  * Created by jon on 17-10-21.
  */
 
-public class FinanceFragment extends Fragment {
+public class FinanceFragment extends BaseFragment {
     public static Fragment newInstance() {
         FinanceFragment fragment = new FinanceFragment();
         return fragment;
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_finance, container, false);
+    protected void initView(View rootView) {
+        Timber.tag("FinanceFragment");
+        rootView.findViewById(R.id.bt_finance).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Timber.d("fjjjjjjjjjjfjjjjjjjjj");
+            }
+        });
+    }
+
+    @Override
+    protected int setLayoutId() {
+        return R.layout.fragment_finance;
     }
 
 }

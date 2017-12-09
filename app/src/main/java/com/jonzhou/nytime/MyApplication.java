@@ -1,12 +1,13 @@
-package com.jonzhou.nytime.application;
+package com.jonzhou.nytime;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import timber.log.BuildConfig;
-import timber.log.Timber;
 
+import com.jonzhou.nytime.application.FakeCrashLibrary;
+
+import timber.log.Timber;
 /**
  * Created by jon on 12/6/17.
  */
@@ -15,6 +16,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         } else {
@@ -43,4 +45,5 @@ public class MyApplication extends Application {
             }
         }
     }
+
 }

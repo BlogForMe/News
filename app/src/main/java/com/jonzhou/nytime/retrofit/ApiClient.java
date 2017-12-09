@@ -1,7 +1,6 @@
 package com.jonzhou.nytime.retrofit;
 
 import com.jonzhou.nytime.BuildConfig;
-import com.jonzhou.nytime.home.ApiService;
 
 import java.util.concurrent.TimeUnit;
 

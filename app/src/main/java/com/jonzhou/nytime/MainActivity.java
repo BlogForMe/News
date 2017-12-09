@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
 //        homePresenter = new HomePresenter(fragments[0],
 //                TaskRepository.getInstance(TasksRemoteDataSource.getInstance(), TasksLocalDataSource.getInstance()));
 
-
-        Timber.v("fajflellelelelel");
     }
 
 
