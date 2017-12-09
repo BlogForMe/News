@@ -1,13 +1,13 @@
-package com.jonzhou.nytime;
+package com.jonzhou.nytime.application;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-
-import com.jonzhou.nytime.application.FakeCrashLibrary;
+import com.jonzhou.nytime.BuildConfig;
 
 import timber.log.Timber;
+
 /**
  * Created by jon on 12/6/17.
  */

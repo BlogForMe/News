@@ -16,5 +16,6 @@ public class TimberTestActivity extends AppCompatActivity {
     }
 
     public void btLOG(View v) {
+        Timber.d("提示");
     }
 }
