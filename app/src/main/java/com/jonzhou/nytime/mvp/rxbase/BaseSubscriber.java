@@ -14,6 +14,9 @@ public abstract class BaseSubscriber<T> extends ResourceSubscriber<T>{
     private BaseView mView;
     private  String errorMsg;
 
+    public BaseSubscriber() {
+    }
+
     public BaseSubscriber(BaseView mView) {
         this.mView = mView;
     }

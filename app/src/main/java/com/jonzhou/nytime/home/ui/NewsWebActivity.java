@@ -38,10 +38,6 @@ public class NewsWebActivity extends BaseActivity {
         context.startActivity(intent);
     }
 
-    @Override
-    protected void setToolbarTitle(TextView toolBarTitle) {
-
-    }
 
     @Override
     protected int setLayoutId() {

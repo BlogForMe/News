@@ -1,35 +1,54 @@
 package com.jonzhou.nytime;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.jonzhou.nytime.base.BaseActivity;
+import com.jonzhou.nytime.base.BaseCqjEntity;
+import com.jonzhou.nytime.home.ApiService;
 import com.jonzhou.nytime.home.ui.HomeFragment;
+import com.jonzhou.nytime.mvp.rxbase.BaseSubscriber;
 import com.jonzhou.nytime.nav.DiscoverFragment;
 import com.jonzhou.nytime.nav.FinanceFragment;
 import com.jonzhou.nytime.nav.MineFragment;
+import com.jonzhou.nytime.retrofit.ApiClient;
+import com.jonzhou.nytime.update.entity.Update;
+import com.jonzhou.nytime.update.ui.UpdateDialogFragment;
+import com.jonzhou.nytime.util.DeviceInfo;
+import com.jonzhou.nytime.util.ParameterUtil;
+import com.jonzhou.nytime.util.rxutil.RxUtil;
 
+import java.io.IOException;
+import java.util.HashMap;
+
+import okhttp3.ResponseBody;
 import timber.log.Timber;
+
+import static com.jonzhou.nytime.retrofit.ApiClient.mRetrofit;
 
 /**
  * http://wl9739.github.io/2016/10/20/BottomNavigationView-%E7%9A%84%E4%BD%BF%E7%94%A8/
  * <p>
  * https://material.io/guidelines/components/bottom-navigation.html#
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+    public static String TAG_DIALOG_INVESTPWD = "TAG_DIALOG_UPDATE_CHECK";
 
     private BottomNavigationView mBottomNavagition;
     private Fragment[] fragments;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int setLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
         fragments = getFragments();
         mBottomNavagition = (BottomNavigationView) findViewById(R.id.navigation);
         mBottomNavagition.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -40,16 +59,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         onTabItemSelected(R.id.nv_home);//默认进入
+    }
 
-        // Make sure the data in repository is the latest.
-        // Also to void the repo only contains a package
-        // when user has already gone to detail page
-        // by check a notification or widget.
-//        TaskRepository.destroyInstance();
-        // Init the presenters.
-//        homePresenter = new HomePresenter(fragments[0],
-//                TaskRepository.getInstance(TasksRemoteDataSource.getInstance(), TasksLocalDataSource.getInstance()));
+    public void btUpdate(View v) {
+        update();
+    }
 
+
+    private void update() {
+        addSubscribe(ApiClient.retrofit().create(ApiService.class).checkUpdate(ParameterUtil.getPostParams(new HashMap<String, Object>()))
+                .compose(RxUtil.<BaseCqjEntity<Update>>rxSchedulerHelper())
+                .subscribeWith(new BaseSubscriber<BaseCqjEntity<Update>>() {
+                    @Override
+                    public void onNext(BaseCqjEntity<Update> updateBaseCqjEntity) {
+                        int versionCode = updateBaseCqjEntity.getData().getVersion();
+                        if (versionCode > DeviceInfo.loadVersionInfo(mContext)) {
+                            UpdateDialogFragment upDialog = new UpdateDialogFragment();
+                            upDialog.show(getFragmentManager(), TAG_DIALOG_INVESTPWD);
+                        }
+                    }
+                })
+
+        );
     }
 
 

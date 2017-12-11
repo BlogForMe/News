@@ -22,6 +22,7 @@ public class ApiClient {
     public static Retrofit mRetrofit;
 
     private static final String baseUrl = "https://api.nytimes.com/svc/topstories/";
+    private  static  final  String cqjUrl= "http://m.cqianjia.com/";
 
     private static Retrofit apiService;
 
@@ -42,7 +43,7 @@ public class ApiClient {
 
             OkHttpClient okHttpClient = builder.build();
             mRetrofit = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
+                    .baseUrl(cqjUrl)
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

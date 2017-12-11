@@ -24,15 +24,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxUtil {
 
-    public static <T> ObservableTransformer<T, T> applaySchedulers() {
-        return new ObservableTransformer<T, T>() {
-            @Override
-            public ObservableSource<T> apply(@NonNull Observable<T> upstream) {
-                return upstream.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
-            }
-        };
-    }
 
     /**
      * 线程Ui切换
@@ -67,7 +58,6 @@ public class RxUtil {
                             return createData(tBaseEntity.getResults());
                         else
                             return Flowable.error(new ApiException(tBaseEntity.getNum_results()));
-
                     }
                 });
             }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="dialog_height">150dp</dimen>
+    <dimen name="size_0.5">0.5dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="font_size_24px_11sp">11sp</dimen>
+    <dimen name="font_size_26px_12sp">12sp</dimen>
+    <dimen name="font_size_30px_12.8sp">12.8sp</dimen>
+    <dimen name="font_size_36px_16sp">16sp</dimen>
+    <dimen name="font_size_30px_15sp">15sp</dimen>
+    <dimen name="font_size_34px_17sp">17sp</dimen>
+    <dimen name="font_size_95px_40sp">40sp</dimen>
+    <dimen name="font_size_20px_8.5sp">8.5sp</dimen>
+
+    <dimen name="anim_circle_indicator_height">30dp</dimen>
+    <dimen name="default_leftRight_padding">15dp</dimen>
+    <dimen name="default_topBottom_padding">15dp</dimen>
+    <dimen name="default_drawable_padding">5dp</dimen>
+    <dimen name="default_top_margin">10dp</dimen>
+    <dimen name="default_divider_height">0.5dp</dimen>
+    <dimen name="default_text_top_margin">6dp</dimen>
+    <dimen name="default_line_space_extra">4dp</dimen>
+
+    <dimen name="three_grid_unit">24dp</dimen>
+    <dimen name="one_and_a_half_grid_unit">12dp</dimen>
+
+
+    <dimen name="project_detail_three_qixian">12sp</dimen>
+    <dimen name="project_detail_three_qixian_shuzi">16sp</dimen>
+    <dimen name="project_detail_three_kaishitouzi">10sp</dimen>
+    <dimen name="project_detail_four">12sp</dimen>
+    <dimen name="project_detail_jinpai_marginleft">30dp</dimen>
+    <dimen name="project_detail_marginleftright">15dp</dimen>
+    <dimen name="project_detail__shangxia">9dp</dimen>
+
+
+    <!-- 字体大小-->
+    <dimen name="text_size_70">70sp</dimen>
+    <dimen name="text_size_40">40sp</dimen>
+    <dimen name="text_size_30">30sp</dimen>
+    <dimen name="text_size_28">28sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_19">19sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_13">13sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_11">11sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+
+
+    <dimen name="dimen_70">70dp</dimen>
+    <dimen name="dimen_40">40dp</dimen>
+    <dimen name="dimen_28">28dp</dimen>
+    <dimen name="dimen_24">24dp</dimen>
+    <dimen name="dimen_22">22dp</dimen>
+    <dimen name="dimen_21">21dp</dimen>
+    <dimen name="dimen_20">20dp</dimen>
+    <dimen name="dimen_19">19dp</dimen>
+    <dimen name="dimen_18">18dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_15">15dp</dimen>
+    <dimen name="dimen_14">14dp</dimen>
+    <dimen name="dimen_13">13dp</dimen>
+    <dimen name="dimen_12">12dp</dimen>
+    <dimen name="dimen_11">11dp</dimen>
+    <dimen name="dimen_10">10dp</dimen>
+
+
+    <!--间距-->
+    <dimen name="my_drawablePadding">10dp</dimen>
+    <dimen name="my_marginLeft">25dp</dimen>
+    <dimen name="my_marginRight">25dp</dimen>
+    <dimen name="my_paddingTopBottom">17dp</dimen>
+</resources>
