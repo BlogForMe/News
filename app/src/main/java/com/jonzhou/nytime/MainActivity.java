@@ -69,6 +69,7 @@ public class MainActivity extends BaseActivity {
     private void update() {
         addSubscribe(ApiClient.retrofit().create(ApiService.class).checkUpdate(ParameterUtil.getPostParams(new HashMap<String, Object>()))
                 .compose(RxUtil.<BaseCqjEntity<Update>>rxSchedulerHelper())
+//                .compose(RxUtil.<Update>handResult())
                 .subscribeWith(new BaseSubscriber<BaseCqjEntity<Update>>() {
                     @Override
                     public void onNext(BaseCqjEntity<Update> updateBaseCqjEntity) {
