@@ -44,7 +44,7 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements  HomeCon
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter.getRemoteNews("home");
+//        mPresenter.getRemoteNews("home");
     }
 
     @Override

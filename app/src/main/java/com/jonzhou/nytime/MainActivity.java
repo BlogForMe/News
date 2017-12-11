@@ -14,6 +14,8 @@ import com.jonzhou.nytime.nav.DiscoverFragment;
 import com.jonzhou.nytime.nav.FinanceFragment;
 import com.jonzhou.nytime.nav.MineFragment;
 
+import timber.log.Timber;
+
 /**
  * http://wl9739.github.io/2016/10/20/BottomNavigationView-%E7%9A%84%E4%BD%BF%E7%94%A8/
  * <p>
@@ -23,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView mBottomNavagition;
     private Fragment[] fragments;
-//    private HomePresenter homePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         // Init the presenters.
 //        homePresenter = new HomePresenter(fragments[0],
 //                TaskRepository.getInstance(TasksRemoteDataSource.getInstance(), TasksLocalDataSource.getInstance()));
-
 
     }
 
