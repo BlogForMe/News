@@ -68,18 +68,18 @@ public class MainActivity extends BaseActivity {
 
     private void update() {
         addSubscribe(ApiClient.retrofit().create(ApiService.class).checkUpdate(ParameterUtil.getPostParams(new HashMap<String, Object>()))
-                .compose(RxUtil.<BaseCqjEntity<Update>>rxSchedulerHelper())
+                        .compose(RxUtil.<BaseCqjEntity<Update>>rxSchedulerHelper())
 //                .compose(RxUtil.<Update>handResult())
-                .subscribeWith(new BaseSubscriber<BaseCqjEntity<Update>>() {
-                    @Override
-                    public void onNext(BaseCqjEntity<Update> updateBaseCqjEntity) {
-                        int versionCode = updateBaseCqjEntity.getData().getVersion();
-                        if (versionCode > DeviceInfo.loadVersionInfo(mContext)) {
-                            UpdateDialogFragment upDialog = new UpdateDialogFragment();
-                            upDialog.show(getFragmentManager(), TAG_DIALOG_INVESTPWD);
-                        }
-                    }
-                })
+                        .subscribeWith(new BaseSubscriber<BaseCqjEntity<Update>>() {
+                            @Override
+                            public void onNext(BaseCqjEntity<Update> updateBaseCqjEntity) {
+                                int versionCode = 0/*updateBaseCqjEntity.getData().getVersion()*/;
+                                if (versionCode > DeviceInfo.loadVersionInfo(mContext)) {
+                                    UpdateDialogFragment upDialog = new UpdateDialogFragment();
+                                    upDialog.show(getFragmentManager(), TAG_DIALOG_INVESTPWD);
+                                }
+                            }
+                        })
 
         );
     }
