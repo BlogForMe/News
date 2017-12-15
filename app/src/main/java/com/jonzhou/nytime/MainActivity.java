@@ -21,15 +21,8 @@ import com.jonzhou.nytime.update.entity.Update;
 import com.jonzhou.nytime.update.ui.UpdateDialogFragment;
 import com.jonzhou.nytime.util.DeviceInfo;
 import com.jonzhou.nytime.util.ParameterUtil;
-import com.jonzhou.nytime.util.rxutil.RxUtil;
 
-import java.io.IOException;
 import java.util.HashMap;
-
-import okhttp3.ResponseBody;
-import timber.log.Timber;
-
-import static com.jonzhou.nytime.retrofit.ApiClient.mRetrofit;
 
 /**
  * http://wl9739.github.io/2016/10/20/BottomNavigationView-%E7%9A%84%E4%BD%BF%E7%94%A8/
@@ -67,21 +60,20 @@ public class MainActivity extends BaseActivity {
 
 
     private void update() {
-        addSubscribe(ApiClient.retrofit().create(ApiService.class).checkUpdate(ParameterUtil.getPostParams(new HashMap<String, Object>()))
-                        .compose(RxUtil.<BaseCqjEntity<Update>>rxSchedulerHelper())
-//                .compose(RxUtil.<Update>handResult())
-                        .subscribeWith(new BaseSubscriber<BaseCqjEntity<Update>>() {
-                            @Override
-                            public void onNext(BaseCqjEntity<Update> updateBaseCqjEntity) {
-                                int versionCode = 0/*updateBaseCqjEntity.getData().getVersion()*/;
-                                if (versionCode > DeviceInfo.loadVersionInfo(mContext)) {
-                                    UpdateDialogFragment upDialog = new UpdateDialogFragment();
-                                    upDialog.show(getFragmentManager(), TAG_DIALOG_INVESTPWD);
-                                }
-                            }
-                        })
-
-        );
+//        addSubscribe(ApiClient.retrofit().create(ApiService.class).checkUpdate(ParameterUtil.getPostParams(new HashMap<String, Object>()))
+//                        .compose(RxUtil.<BaseCqjEntity<Update>>rxSchedulerHelper())
+////                .compose(RxUtil.<Update>handResult())
+//                        .subscribeWith(new BaseSubscriber<BaseCqjEntity<Update>>() {
+//                            @Override
+//                            public void onNext(BaseCqjEntity<Update> updateBaseCqjEntity) {
+//                                int versionCode = 0/*updateBaseCqjEntity.getData().getVersion()*/;
+//                                if (versionCode > DeviceInfo.loadVersionInfo(mContext)) {
+//                                    UpdateDialogFragment upDialog = new UpdateDialogFragment();
+//                                    upDialog.show(getFragmentManager(), TAG_DIALOG_INVESTPWD);
+//                                }
+//                            }
+//                        })
+//        );
     }
 
 

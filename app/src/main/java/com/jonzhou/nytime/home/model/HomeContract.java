@@ -1,5 +1,6 @@
 package com.jonzhou.nytime.home.model;
 
+import com.jonzhou.nytime.home.model.entity.FinancialTimes;
 import com.jonzhou.nytime.home.model.entity.HomeResult;
 import com.jonzhou.nytime.mvp.base.BasePresenter;
 import com.jonzhou.nytime.mvp.base.BaseView;
@@ -17,7 +18,7 @@ public class HomeContract {
      */
     public interface View extends BaseView {
 
-        void showTasks(List<HomeResult> resultList);
+        void showTasks(List<FinancialTimes> resultList);
     }
 
 
@@ -26,7 +27,6 @@ public class HomeContract {
      */
     public interface Presenter extends BasePresenter<View> {
         void getRemoteNews(String type);
-//        void getData();
     }
 
 }

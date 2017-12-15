@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,10 +9,13 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Famous Athletes Have Always Led the Way"
-        android:textColor="@color/text_black"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_25"
+        android:text="Former White House photographer describes what is was like to capture Obama on the worst day of his presidency"
+        android:textColor="#2f3835"
+        android:textSize="@dimen/text_size_14"
         android:textStyle="bold" />
 
     <TextView
@@ -19,14 +23,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="The extraordinary are the ones who need to make things better for everyone."
-        android:textColor="@color/text_light" />
+        android:text="Pete Souza describes what it was like to photograph Obama immediately following the shooting at Sandy Hook Elementary School in Newtown, Connecticut."
+        android:textColor="#4b4f4e"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-    <TextView
-        android:id="@+id/tv_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="12h ago"
-        android:textColor="@color/text_light_hour" />
-</LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</android.support.constraint.ConstraintLayout>

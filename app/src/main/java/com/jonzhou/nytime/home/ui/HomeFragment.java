@@ -16,13 +16,15 @@ import android.widget.TextView;
 import com.jonzhou.nytime.R;
 import com.jonzhou.nytime.home.model.HomeContract;
 import com.jonzhou.nytime.home.model.HomePresenter;
-import com.jonzhou.nytime.home.model.entity.HomeResult;
+import com.jonzhou.nytime.home.model.entity.FinancialTimes;
+import com.jonzhou.nytime.home.model.entity.FinancialTimes;
 import com.jonzhou.nytime.mvp.rxbase.MvpFragment;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 /**
  * Created by jon on 17-10-21.
@@ -35,7 +37,7 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements  HomeCon
     RecyclerView recyclerView;
     private LinearLayoutManager mLayoutManager;
     private HomeAdapter homeAdapter;
-//    private HomeContract.Presenter presenter;
+    private HomeContract.Presenter presenter;
 
     public static Fragment newInstance() {
         return new HomeFragment();
@@ -44,7 +46,7 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements  HomeCon
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        mPresenter.getRemoteNews("home");
+        mPresenter.getRemoteNews("financial-times");
     }
 
     @Override
@@ -53,8 +55,8 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements  HomeCon
         recyclerView.setLayoutManager(mLayoutManager);
         homeAdapter = new HomeAdapter(mContext);
         recyclerView.setAdapter(homeAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(mContext,
-                DividerItemDecoration.VERTICAL));
+//        recyclerView.addItemDecoration(new DividerItemDecoration(mContext,
+//                DividerItemDecoration.VERTICAL));
     }
 
     @Override
@@ -63,26 +65,23 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements  HomeCon
     }
 
     @Override
-    public void showTasks(List<HomeResult> resultList) {
+    public void showTasks(List<FinancialTimes> resultList) {
         homeAdapter.setData(resultList);
+        Timber.d(resultList.toString());
     }
 
 
-//    @Override
-//    public void setPresenter(HomeContract.Presenter presenter) {
-//        this.presenter = presenter;
-//    }
 
     class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         private Context context;
-        private List<HomeResult> homeResults;
+        private List<FinancialTimes> FinancialTimess;
 
         public HomeAdapter(Context mContext) {
             this.context = mContext;
         }
 
-        void setData(List<HomeResult> homeResults) {
-            this.homeResults = homeResults;
+        void setData(List<FinancialTimes> FinancialTimess) {
+            this.FinancialTimess = FinancialTimess;
             this.notifyDataSetChanged();
         }
 
@@ -94,13 +93,13 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements  HomeCon
 
         @Override
         public void onBindViewHolder(ViewHolder holder, final int position) {
-            holder.tvTitle.setText(homeResults.get(position).getTitle());
-            holder.tvDescribe.setText(homeResults.get(position).getSubsection());
-            holder.tvTime.setText(homeResults.get(position).getPublished_date());
+            holder.tvTitle.setText(FinancialTimess.get(position).getTitle());
+//            holder.tvDescribe.setText(FinancialTimess.get(position).getSubsection());
+//            holder.tvTime.setText(FinancialTimess.get(position).getPublished_date());
             holder.llItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String urls = homeResults.get(position).getUrl();
+                    String urls = FinancialTimess.get(position).getUrl();
                     NewsWebActivity.statActivity(context, urls);
                 }
             });
@@ -108,10 +107,10 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements  HomeCon
 
         @Override
         public int getItemCount() {
-            if (homeResults == null) {
+            if (FinancialTimess == null) {
                 return 0;
             }
-            return homeResults.size();
+            return FinancialTimess.size();
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {

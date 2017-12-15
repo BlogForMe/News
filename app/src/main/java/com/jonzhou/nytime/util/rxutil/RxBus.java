@@ -1,6 +1,6 @@
 package com.jonzhou.nytime.util.rxutil;
 
-import com.jonzhou.nytime.base.BaseEntity;
+import com.jonzhou.nytime.base.entity.BaseNews;
 import com.jonzhou.nytime.retrofit.ApiException;
 
 import org.reactivestreams.Publisher;
@@ -10,9 +10,6 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.FlowableTransformer;
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
@@ -22,7 +19,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by jon on 17-10-22.
  */
 
-public class RxUtil {
+public class RxBus{
 
 
     /**
@@ -47,17 +44,17 @@ public class RxUtil {
      * @param <T>
      * @return
      */
-    public static <T> FlowableTransformer<BaseEntity<T>, T> handResult() {
-        return new FlowableTransformer<BaseEntity<T>, T>() {
+    public static <T> FlowableTransformer<BaseNews<T>, T> handResult() {
+        return new FlowableTransformer<BaseNews<T>, T>() {
             @Override
-            public Publisher<T> apply(@NonNull Flowable<BaseEntity<T>> httpResponseFlowable) {
-                return httpResponseFlowable.flatMap(new Function<BaseEntity<T>, Flowable<T>>() {
+            public Publisher<T> apply(@NonNull Flowable<BaseNews<T>> httpResponseFlowable) {
+                return httpResponseFlowable.flatMap(new Function<BaseNews<T>, Flowable<T>>() {
                     @Override
-                    public Flowable<T> apply(@NonNull BaseEntity<T> tBaseEntity) throws Exception {
-                        if ("OK".equals(tBaseEntity.getStatus()))
-                            return createData(tBaseEntity.getResults());
+                    public Flowable<T> apply(@NonNull BaseNews<T> tBaseNews) throws Exception {
+                        if ("ok".equals(tBaseNews.getStatus()))
+                            return createData(tBaseNews.getArticles());
                         else
-                            return Flowable.error(new ApiException(tBaseEntity.getNum_results()));
+                            return Flowable.error(new ApiException(""));
                     }
                 });
             }
