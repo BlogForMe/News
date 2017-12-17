@@ -32,6 +32,6 @@
     </style>
 
     <style name="TabLayoutNews" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
-        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
     </style>
 </resources>

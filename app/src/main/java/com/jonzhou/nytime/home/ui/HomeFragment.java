@@ -36,6 +36,7 @@ public class HomeFragment extends BaseFragment {
         viewPager.setAdapter(new NewsPagerAdapter(getChildFragmentManager()));
         viewPager.setOffscreenPageLimit(tabTitles.length - 1);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
 
     @Override

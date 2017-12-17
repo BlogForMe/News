@@ -13,10 +13,10 @@
         android:layout_marginLeft="@dimen/dimen_20"
         android:layout_marginRight="@dimen/dimen_25"
         android:maxLines="2"
+        android:textStyle="bold"
         android:text="Former White House photographer describes what is was like to capture Obama on the worst day of his presidency"
         android:textColor="#2f3835"
-        android:textSize="@dimen/text_size_18"
-        android:textStyle="bold" />
+        android:textSize="@dimen/text_size_16" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,10 +32,10 @@
             android:layout_alignTop="@+id/iv_img"
             android:layout_marginLeft="@dimen/dimen_20"
             android:layout_marginRight="@dimen/dimen_10"
-            android:maxLines="3"
             android:layout_marginTop="10dp"
             android:layout_toLeftOf="@+id/iv_img"
             android:lineSpacingExtra="3dp"
+            android:maxLines="3"
             android:text="Pete Souza describes what iately f Sandy Hook Elementary School in Newtown, Connecticut."
             android:textColor="#4b4f4e"
             android:textSize="@dimen/text_size_14" />
