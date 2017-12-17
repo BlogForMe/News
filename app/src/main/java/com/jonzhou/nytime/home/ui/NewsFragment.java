@@ -59,7 +59,7 @@ public class NewsFragment extends MvpFragment<HomePresenter> implements HomeCont
     @Override
     protected void requestData() {
         super.requestData();
-        onRefresh();
+//        onRefresh();
     }
 
 
@@ -72,6 +72,12 @@ public class NewsFragment extends MvpFragment<HomePresenter> implements HomeCont
 //        recyclerView.addItemDecoration(new DividerItemDecoration(mContext,
 //                DividerItemDecoration.VERTICAL));
         swipeRefreshLayout.setOnRefreshListener(this);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        onRefresh();
     }
 
     @Override

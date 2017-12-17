@@ -10,6 +10,7 @@
 
     <include
         android:id="@+id/ic_top"
+        android:visibility="gone"
         layout="@layout/include_top" />
     <ProgressBar
         android:id="@+id/progress"
