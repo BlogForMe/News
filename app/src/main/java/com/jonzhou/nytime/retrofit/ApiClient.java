@@ -2,9 +2,13 @@ package com.jonzhou.nytime.retrofit;
 
 import com.jonzhou.nytime.BuildConfig;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -22,7 +26,9 @@ public class ApiClient {
     public static Retrofit mRetrofit;
 
     private static final String baseUrl = "https://api.nytimes.com/svc/topstories/";
-    private  static  final  String cqjUrl= "http://m.cqianjia.com/";
+    private static final String cqjUrl = "http://m.cqianjia.com/";
+    private static final String newsUrl = "https://newsapi.org/";
+
 
     private static Retrofit apiService;
 
@@ -41,9 +47,11 @@ public class ApiClient {
                     .connectTimeout(11, TimeUnit.SECONDS)
                     .build();
 
+
             OkHttpClient okHttpClient = builder.build();
+
             mRetrofit = new Retrofit.Builder()
-                    .baseUrl(cqjUrl)
+                    .baseUrl(newsUrl)
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

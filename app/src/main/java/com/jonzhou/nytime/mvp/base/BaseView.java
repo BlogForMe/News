@@ -7,6 +7,7 @@ package com.jonzhou.nytime.mvp.base;
 public interface BaseView<T> {
 
 
-//    void initViews(View view);
+    //    void initViews(View view);
 //    void setPresenter(T presenter);
+    void ErrorMsg(String msg);
 }

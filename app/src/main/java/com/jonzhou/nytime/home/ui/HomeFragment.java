@@ -1,62 +1,41 @@
 package com.jonzhou.nytime.home.ui;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.support.design.widget.TabLayout;
+import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.jonzhou.nytime.R;
-import com.jonzhou.nytime.home.model.HomeContract;
-import com.jonzhou.nytime.home.model.HomePresenter;
-import com.jonzhou.nytime.home.model.entity.FinancialTimes;
-import com.jonzhou.nytime.home.model.entity.FinancialTimes;
-import com.jonzhou.nytime.mvp.rxbase.MvpFragment;
-
-import java.util.List;
+import com.jonzhou.nytime.base.BaseFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import timber.log.Timber;
+
+import static com.jonzhou.nytime.util.Constants.tabTitles;
 
 /**
- * Created by jon on 17-10-21.
- * 首页
+ * Created by jon on 12/16/17.
  */
 
-public class HomeFragment extends MvpFragment<HomePresenter> implements  HomeContract.View {
+public class HomeFragment extends BaseFragment {
 
-    @BindView(R.id.recycleView)
-    RecyclerView recyclerView;
-    private LinearLayoutManager mLayoutManager;
-    private HomeAdapter homeAdapter;
-    private HomeContract.Presenter presenter;
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
+    @BindView(R.id.tab_layout)
+    TabLayout tabLayout;
 
     public static Fragment newInstance() {
         return new HomeFragment();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mPresenter.getRemoteNews("financial-times");
-    }
 
     @Override
     protected void initView(View rootView) {
-        mLayoutManager = new LinearLayoutManager(mContext);
-        recyclerView.setLayoutManager(mLayoutManager);
-        homeAdapter = new HomeAdapter(mContext);
-        recyclerView.setAdapter(homeAdapter);
-//        recyclerView.addItemDecoration(new DividerItemDecoration(mContext,
-//                DividerItemDecoration.VERTICAL));
+        viewPager.setAdapter(new NewsPagerAdapter(getChildFragmentManager()));
+        viewPager.setOffscreenPageLimit(tabTitles.length - 1);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -64,69 +43,41 @@ public class HomeFragment extends MvpFragment<HomePresenter> implements  HomeCon
         return R.layout.fragment_home;
     }
 
+
     @Override
-    public void showTasks(List<FinancialTimes> resultList) {
-        homeAdapter.setData(resultList);
-        Timber.d(resultList.toString());
+    public void onDestroyView() {
+        super.onDestroyView();
+        viewPager.setAdapter(null);
     }
 
+    /**
+     * 使用　{@link android.support.v13.app.FragmentStatePagerAdapter}
+     * 　兼容{@link android.app.Fragment}
+     * <p>
+     * 这里用　FragmentStatePagerAdapter点其他tab回来后崩溃
+     * {@sample https://stackoverflow.com/questions/45665709/using-fragmentstatepageadapter-to-retain-position-for-fragment-with-viewpager }
+     */
+    class NewsPagerAdapter extends FragmentPagerAdapter {
 
 
-    class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
-        private Context context;
-        private List<FinancialTimes> FinancialTimess;
-
-        public HomeAdapter(Context mContext) {
-            this.context = mContext;
+        public NewsPagerAdapter(FragmentManager fm) {
+            super(fm);
         }
 
-        void setData(List<FinancialTimes> FinancialTimess) {
-            this.FinancialTimess = FinancialTimess;
-            this.notifyDataSetChanged();
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabTitles[position];
         }
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home, null);
-            return new ViewHolder(itemView);
+        public Fragment getItem(int position) {
+            return NewsFragment.newInstance(position);
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, final int position) {
-            holder.tvTitle.setText(FinancialTimess.get(position).getTitle());
-//            holder.tvDescribe.setText(FinancialTimess.get(position).getSubsection());
-//            holder.tvTime.setText(FinancialTimess.get(position).getPublished_date());
-            holder.llItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String urls = FinancialTimess.get(position).getUrl();
-                    NewsWebActivity.statActivity(context, urls);
-                }
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            if (FinancialTimess == null) {
-                return 0;
-            }
-            return FinancialTimess.size();
-        }
-
-        class ViewHolder extends RecyclerView.ViewHolder {
-            @BindView(R.id.tv_title)
-            TextView tvTitle;
-            @BindView(R.id.tv_describe)
-            TextView tvDescribe;
-            @BindView(R.id.tv_time)
-            TextView tvTime;
-            @BindView(R.id.ll_item)
-            LinearLayout llItem;
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-                ButterKnife.bind(this, itemView);
-            }
+        public int getCount() {
+            return tabTitles.length;
         }
     }
 }

@@ -22,6 +22,8 @@
         <activity android:name=".TimberTestActivity">
 
         </activity>
+
+        <activity android:name=".home.ui.NewsWebActivity" />
     </application>
 
 </manifest>

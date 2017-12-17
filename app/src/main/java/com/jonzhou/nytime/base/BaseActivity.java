@@ -28,7 +28,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
     protected final static String PARAMS_01 = "PARAMS01";
     protected final static String PARAMS_02 = "PARAMS02";
-    protected static final String EXTRA_NAME_1 = "extra_name_1";
 
 
     protected Context mContext;
@@ -41,10 +40,10 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG + "         Test", "onCreate() ");
 
         setContentView(setLayoutId());
 
+        ButterKnife.bind(this);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         if (mToolbar != null) {            //toolbar显示到界面,判断null,需要考虑有的界面没添加toolbar
             setSupportActionBar(mToolbar);
@@ -59,6 +58,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         }
         //显示默认返回键
         initView();
+
     }
 
     /**
@@ -90,16 +90,16 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (mToolbar != null && isShowBack()) {
-            showBack();
+//            showBack();
         }
     }
 
     /**
      * 设置导航栏通用模式
      */
-    private void showBack() {
-        mToolbar.setNavigationIcon(R.mipmap.bt_back);//自定义返回键
-    }
+//    private void showBack() {
+//        mToolbar.setNavigationIcon(R.mipmap.bt_back);//自定义返回键
+//    }
 
 
     private CompositeDisposable mCompositeDisposable;

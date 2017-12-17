@@ -13,7 +13,7 @@
         android:layout_alignParentBottom="true"
         app:itemIconTint="@android:color/holo_red_light"
         app:itemTextColor="@android:color/holo_red_light"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/menu_navigation" />
 
     <FrameLayout
         android:id="@+id/fl_bottom"

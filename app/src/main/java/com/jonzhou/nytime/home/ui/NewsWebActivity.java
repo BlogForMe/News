@@ -46,6 +46,7 @@ public class NewsWebActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setToolbarTitle("News");
         initWebView();
         String url = getIntent().getStringExtra(PARAMS_01);
         wbNews.loadUrl(url);
@@ -65,7 +66,8 @@ public class NewsWebActivity extends BaseActivity {
         wbNews.setWebViewClient(new MyWebViewClient());
         wbNews.setWebChromeClient(new MyWebChromeClient());
     }
-    private  class  MyWebViewClient extends WebViewClient{
+
+    private class MyWebViewClient extends WebViewClient {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -91,7 +93,6 @@ public class NewsWebActivity extends BaseActivity {
             super.onProgressChanged(view, newProgress);
             mProgress.setProgress(newProgress);
         }
-
 
 
         @Override
@@ -123,7 +124,7 @@ public class NewsWebActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (wbNews!=null)
+        if (wbNews != null)
             wbNews.destroy();
     }
 }

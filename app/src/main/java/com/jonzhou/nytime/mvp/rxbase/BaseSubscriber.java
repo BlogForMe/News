@@ -10,9 +10,9 @@ import io.reactivex.subscribers.ResourceSubscriber;
  * Created by jon on 17-10-24.
  */
 
-public abstract class BaseSubscriber<T> extends ResourceSubscriber<T>{
+public abstract class BaseSubscriber<T> extends ResourceSubscriber<T> {
     private BaseView mView;
-    private  String errorMsg;
+    private String errorMsg;
 
     public BaseSubscriber() {
     }
@@ -26,16 +26,18 @@ public abstract class BaseSubscriber<T> extends ResourceSubscriber<T>{
 
     @Override
     public void onError(Throwable t) {
-        if (mView==null){
+        if (mView == null) {
             return;
         }
-        if (TextUtils.isEmpty(errorMsg)){
-
-        }
+        mView.ErrorMsg(t.getMessage());
+        onFinish();
     }
+
+    protected abstract void onFinish();
+
 
     @Override
     public void onComplete() {
-
+        onFinish();
     }
 }

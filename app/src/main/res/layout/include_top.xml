@@ -4,18 +4,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:elevation="0dp"
+    app:theme="@style/toolbar_menu">
+    <!--
+      app:popupTheme="@style/overFlowMenuTheme"
+      android:background="@android:color/white"
+    -->
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:popupTheme="@style/overFlowMenuTheme"
-        android:theme="@style/overFlowMenuTheme"
-        android:navigationIcon="?attr/homeAsUpIndicator"
-        app:titleTextColor="@android:color/white">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:minHeight="?actionBarSize">
 
         <TextView
             android:id="@+id/toolbar_title"
@@ -23,8 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/white" />
-
-
+            android:text="投资"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_size_18" />
     </android.support.v7.widget.Toolbar>
 </android.support.design.widget.AppBarLayout>

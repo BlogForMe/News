@@ -10,6 +10,8 @@ import android.content.pm.PackageManager;
 
 public class DeviceInfo {
 
+    public static String apkKey = "e4f505f73a9f4ee99119ab33a19ab05e";
+
     public static int loadVersionInfo(Context context) {
         int versionCode = 0;
         try {

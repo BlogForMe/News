@@ -19,6 +19,9 @@ public class HomeContract {
     public interface View extends BaseView {
 
         void showTasks(List<FinancialTimes> resultList);
+        void showLoading();
+
+        void hideLoading();
     }
 
 
@@ -26,7 +29,7 @@ public class HomeContract {
      * View 对　Presenter的请求
      */
     public interface Presenter extends BasePresenter<View> {
-        void getRemoteNews(String type);
+        void getRemoteNews(String type,String apikey);
     }
 
 }

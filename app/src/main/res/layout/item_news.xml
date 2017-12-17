@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_25"
+        android:maxLines="2"
+        android:text="Former White House photographer describes what is was like to capture Obama on the worst day of his presidency"
+        android:textColor="#2f3835"
+        android:textSize="@dimen/text_size_18"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+
+        <TextView
+            android:id="@+id/tv_describe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_img"
+            android:layout_alignTop="@+id/iv_img"
+            android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_10"
+            android:maxLines="3"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/iv_img"
+            android:lineSpacingExtra="3dp"
+            android:text="Pete Souza describes what iately f Sandy Hook Elementary School in Newtown, Connecticut."
+            android:textColor="#4b4f4e"
+            android:textSize="@dimen/text_size_14" />
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher" />
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

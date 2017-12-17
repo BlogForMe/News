@@ -17,4 +17,21 @@
         <item name="overlapAnchor">false</item>
     </style>
 
+    <style name="toolbar_menu" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- 设置Menu菜单的字体颜色 -->
+        <!--
+                <item name="android:itemBackground">@android:color/white</item>
+        -->
+        <item name="colorControlNormal">@color/text_black</item>
+        <item name="android:textSize">@dimen/dimen_16</item>
+        <item name="android:layout_marginRight">@dimen/dimen_10</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:actionMenuTextColor">#ffaf0c</item>
+        <!-- 设置Menu窗口不覆盖Toolbar视图 -->
+        <item name="overlapAnchor">false</item>
+    </style>
+
+    <style name="TabLayoutNews" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">@dimen/text_size_10</item>
+    </style>
 </resources>
