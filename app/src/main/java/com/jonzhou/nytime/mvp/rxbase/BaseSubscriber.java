@@ -1,9 +1,8 @@
 package com.jonzhou.nytime.mvp.rxbase;
 
-import android.text.TextUtils;
-
 import com.jonzhou.nytime.mvp.base.BaseView;
 
+import io.reactivex.internal.operators.observable.ObservableSubscribeOn;
 import io.reactivex.subscribers.ResourceSubscriber;
 
 /**

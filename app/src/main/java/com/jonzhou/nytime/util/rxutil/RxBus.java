@@ -10,6 +10,7 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.FlowableTransformer;
+import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
@@ -19,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by jon on 17-10-22.
  */
 
-public class RxBus{
+public class RxBus {
 
 
     /**

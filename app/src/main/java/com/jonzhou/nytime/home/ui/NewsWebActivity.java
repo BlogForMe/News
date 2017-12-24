@@ -29,6 +29,7 @@ public class NewsWebActivity extends BaseActivity {
     @BindView(R.id.progress)
     ProgressBar mProgress;
 
+    private static final String APP_CACHE_DIRNAME = "/webCache";
 
     public static void statActivity(Context context, String params) {
         Intent intent = new Intent(context, NewsWebActivity.class);
@@ -50,15 +51,22 @@ public class NewsWebActivity extends BaseActivity {
         initWebView();
         String url = getIntent().getStringExtra(PARAMS_01);
         wbNews.loadUrl(url);
-
     }
 
     private void initWebView() {
         WebSettings webSettings = wbNews.getSettings();
         webSettings.setJavaScriptEnabled(true);// 启用支持javascript
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);// 优先使用缓存
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);//缓存模式
+        webSettings.setDomStorageEnabled(true); // 开启DOM storage API 功能
+        // 开启database storage API功能
+        webSettings.setDatabaseEnabled(true);
         webSettings.setAllowFileAccess(true);//可以访问文件
         webSettings.setBuiltInZoomControls(true);//支持缩放
+
+        // 设置数据库缓存路径
+        String cacheDirPath = getFilesDir().getAbsolutePath() + APP_CACHE_DIRNAME;
+        webSettings.setAppCachePath(cacheDirPath);
+        webSettings.setAppCacheEnabled(true);
         if (android.os.Build.VERSION.SDK_INT >= 11) {
             webSettings.setPluginState(WebSettings.PluginState.ON);
             webSettings.setDisplayZoomControls(false);// 支持缩放

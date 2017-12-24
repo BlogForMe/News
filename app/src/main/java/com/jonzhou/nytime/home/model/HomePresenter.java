@@ -2,15 +2,15 @@ package com.jonzhou.nytime.home.model;
 
 import com.jonzhou.nytime.base.entity.BaseNews;
 import com.jonzhou.nytime.home.model.entity.FinancialTimes;
-import com.jonzhou.nytime.mvp.rxbase.BaseSubscriber;
 import com.jonzhou.nytime.mvp.rxbase.RxPresenter;
 import com.jonzhou.nytime.util.DeviceInfo;
-import com.jonzhou.nytime.util.rxutil.RxBus;
 
-import java.util.HashMap;
 import java.util.List;
 
-import timber.log.Timber;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2017/10/24 0024.
@@ -24,21 +24,26 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
         mView.showLoading();
         apikey = DeviceInfo.apkKey;
         addSubscribe(apiService.getRemoteNews(type, apikey)
-                .compose(RxBus.<BaseNews<List<FinancialTimes>>>rxSchedulerHelper())
-                .compose(RxBus.<List<FinancialTimes>>handResult())
-                .subscribeWith(new BaseSubscriber<List<FinancialTimes>>() {
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<BaseNews<List<FinancialTimes>>>() {
                     @Override
-                    protected void onFinish() {
-                        mView.hideLoading();
+                    public void onNext(BaseNews<List<FinancialTimes>> listBaseNews) {
+                        mView.showTasks(listBaseNews.getArticles());
                     }
 
                     @Override
-                    public void onNext(List<FinancialTimes> financialTimes) {
-                        Timber.d(financialTimes.toString());
-                        mView.showTasks(financialTimes);
+                    public void onError(Throwable e) {
+
                     }
-                })
-        );
+
+                    @Override
+                    public void onComplete() {
+                        mView.hideLoading();
+
+                    }
+                }));
+
     }
 
 
