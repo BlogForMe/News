@@ -10,18 +10,25 @@
 
     <include
         android:id="@+id/ic_top"
-        android:visibility="gone"
-        layout="@layout/include_top" />
+        layout="@layout/include_top"
+        android:visibility="gone" />
+
     <ProgressBar
         android:id="@+id/progress"
-        android:layout_below="@id/ic_top"
-        android:layout_width="match_parent"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_height="5dp" />
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/ic_top" />
 
-    <WebView
-        android:id="@+id/wb_news"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/progress" />
+        android:layout_below="@id/progress">
+
+        <WebView
+            android:id="@+id/wb_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

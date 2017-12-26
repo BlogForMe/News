@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -22,14 +23,17 @@ import timber.log.Timber;
 /**
  * news detail
  */
-public class NewsWebActivity extends BaseActivity {
+public class NewsWebActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.wb_news)
     WebView wbNews;
 
     @BindView(R.id.progress)
     ProgressBar mProgress;
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout swipeRefresh;
 
     private static final String APP_CACHE_DIRNAME = "/webCache";
+    private String newsUrl;
 
     public static void statActivity(Context context, String params) {
         Intent intent = new Intent(context, NewsWebActivity.class);
@@ -49,8 +53,9 @@ public class NewsWebActivity extends BaseActivity {
     protected void initView() {
         setToolbarTitle("News");
         initWebView();
-        String url = getIntent().getStringExtra(PARAMS_01);
-        wbNews.loadUrl(url);
+        newsUrl = getIntent().getStringExtra(PARAMS_01);
+        swipeRefresh.setOnRefreshListener(this);
+        onRefresh();
     }
 
     private void initWebView() {
@@ -75,11 +80,17 @@ public class NewsWebActivity extends BaseActivity {
         wbNews.setWebChromeClient(new MyWebChromeClient());
     }
 
+    @Override
+    public void onRefresh() {
+        wbNews.loadUrl(newsUrl);
+    }
+
     private class MyWebViewClient extends WebViewClient {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
+
             return false;
         }
 
@@ -87,6 +98,7 @@ public class NewsWebActivity extends BaseActivity {
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             mProgress.setVisibility(View.GONE);
+            swipeRefresh.setRefreshing(false);
         }
 
         @Override
