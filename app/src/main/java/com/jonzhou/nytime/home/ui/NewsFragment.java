@@ -59,7 +59,7 @@ public class NewsFragment extends MvpFragment<HomePresenter> implements HomeCont
     @Override
     protected void requestData() {
         super.requestData();
-//        onRefresh();
+        onRefresh();
     }
 
 

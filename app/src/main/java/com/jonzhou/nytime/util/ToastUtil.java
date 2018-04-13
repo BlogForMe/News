@@ -13,6 +13,6 @@ public class ToastUtil {
         if (TextUtils.isEmpty(message)) {
             return;
         }
-        Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 }
