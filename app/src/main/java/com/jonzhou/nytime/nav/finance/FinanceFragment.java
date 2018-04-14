@@ -58,9 +58,21 @@ public class FinanceFragment extends MvpFragment<FinancePresenter> implements IF
         finaceAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ToastUtil.showToast(getActivity(), " 提示 " + position);
+                ToastUtil.showToast(getActivity(), " 点击item " + position);
             }
         });
+
+        finaceAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                ToastUtil.showToast(getActivity(), " 长按item " + position);
+
+                return false;
+            }
+        });
+
+
+
     }
 
 
